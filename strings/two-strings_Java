@@ -1,3 +1,11 @@
+//============================================================================
+// Name        : HackerRank.cpp
+// Author      : Tsotne Putkaradze, tsotnep@gmail.com
+// Version     : 1.0
+// Copyright   : very free to use
+// Description : HackerRank.com problem solutions in Java
+// task        : https://www.hackerrank.com/challenges/two-strings
+//============================================================================
 import java.io.*;
 
 public class Solution {
