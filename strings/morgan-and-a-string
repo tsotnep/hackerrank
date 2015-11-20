@@ -1,0 +1,44 @@
+//============================================================================
+// Name        : HackerRank.cpp
+// Author      : Tsotne Putkaradze, tsotnep@gmail.com
+// Version     : 1.0
+// Copyright   : very free to use
+// Description : HackerRank.com problem solutions in C++
+// task        : https://www.hackerrank.com/challenges/morgan-and-a-string
+//============================================================================
+
+#include <iostream>
+#include <string>
+#include <cmath>
+
+using namespace std;
+
+int main() {
+	int t = 1;
+	cin >> t;
+	while (t--) {
+		string a, b, ans;
+		long long i = 0, j = 0;
+		cin >> a >> b;
+		while ((signed) a.length() != i && (signed) b.length() != j) {
+
+			if (a[i] < b[j])
+				ans += a[i++];
+			else if (a[i] > b[j])
+				ans += b[j++];
+			else
+			{
+
+				if (a.substr(i) < b.substr(j))
+					ans += a[i++];
+				else
+					ans += b[j++];
+			}
+
+		}
+		ans = ans + a.substr(i) + b.substr(j);
+		cout << ans << endl;
+//		cout << ((a<b)?"a<b":"a>b");
+	}
+	return 0;
+}
