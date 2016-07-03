@@ -26,6 +26,9 @@ int RECU(int i, int j){
         if (v[i-1][j+1] ==1)        {   v[i-1][j+1] = 0;   cout<<"IN5 NE " <<i<<" "<<j<<endl;   return 1+RECU(i-1,j+1); }
         if (v[i+1][j-1] ==1)        {   v[i+1][j-1] = 0;   cout<<"IN6 SW " <<i<<" "<<j<<endl;   return 1+RECU(i+1,j-1); }
         if (v[i+1][j+1] ==1)        {   v[i+1][j+1] = 0;   cout<<"IN7 SE " <<i<<" "<<j<<endl;   return 1+RECU(i+1,j+1); }
+
+
+        cout<<"IF Return"<<endl;
         return 0;
     }
     else{
