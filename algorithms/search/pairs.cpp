@@ -18,16 +18,17 @@
 using namespace std;
 /* Head ends here */
 
+
 int pairs(vector < int > a,int k) {
-   int ans=0;
-   //vector <int> b(1000000000);
-    long long b[10000000000];
-    for (long long i=0; i<a.size(); i++){
-        b[a[i]]=1;
-    }
-    for (long long i=0; i<a.size(); i++){
-        if (b[a[i]+k]==1) ans++;
-        if (b[a[i]-k]==1) ans++;
+   int ans=0,d,i,j;
+    std::vector<int>::iterator it;
+
+    sort(a.begin(),a.end());
+
+    for (i=0; i<a.size();i++){
+
+        it = find (a.begin()+i, a.end(), a[i]+k);
+        if (it != a.end()) ans++;
     }
     return ans;
 }
