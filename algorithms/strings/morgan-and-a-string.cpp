@@ -4,28 +4,27 @@
 #include <sstream>
 
 using namespace std;
-string a="ABACABA", b="ABACABA", ans="";
+string a="ABBAAAA", b="AABBBAZZ", ans="";
 
 void fillup(int ia, int ib){
     int da=a.size()-ia, db=b.size()-ib;
     int d=da-db;
-    // cout <<"d="<< d <<endl;
-    // cout <<"ia= "<<ia<<", ib="<<ib<<endl;
-
-    int c='Z'+1;
-    char cc=(char)c;
-    stringstream ss;
-    string ccc;
-    ss << cc;
-    ss >> ccc;
-
+    int c='Z'+1;    char cc=(char)c;    stringstream ss;    string ccc;    ss << cc;    ss >> ccc;
     while(d){
         if (d>0) {d--; b+=ccc;}
-        else
-            if (d<0) {d++; a+=ccc;}
+        else  if (d<0) {d++; a+=ccc;}
     }
 }
 
+int aISless(int ia, int ib){
+    int i=0;
+    while (i<a.size()){
+        i++;
+        if(a[ia+i] < b[ib+i]) return 1;
+        if(a[ia+i] > b[ib+i]) return 0;
+    }
+    return 1;
+}
 
 int main() {
 
@@ -44,9 +43,9 @@ int main() {
                 if (a[ia]>b[ib]) {ans+=b[ib]; ib++;}
                 else{
                     fillup(ia,ib);
-                    // cout << a << endl;
-                    // cout << b << endl;
-                    if (a<b) {ans+=a[ia]; ia++;}
+                    // cout << a.substr(ia) << endl;
+                    // cout << b.substr(ib) << endl<<endl;
+                    if (aISless(ia,ib)) {ans+=a[ia]; ia++;}
                     else {ans+=b[ib]; ib++;}
                 }
             }
