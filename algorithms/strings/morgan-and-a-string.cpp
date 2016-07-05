@@ -1,12 +1,3 @@
-//============================================================================
-// Name        : HackerRank.cpp
-// Author      : Tsotne Putkaradze, tsotnep@gmail.com
-// Version     : 1.1
-// Copyright   : very free to use
-// Description : HackerRank.com problem solutions in C++
-// task        : https://www.hackerrank.com/challenges/morgan-and-a-string
-//============================================================================
-
 #include <iostream>
 #include <string>
 #include <cmath>
@@ -39,12 +30,13 @@ void fillup(int ia, int ib){
 int main() {
 
 	int t = 1, sa,sb,ia,ib;
-	// cin >> t;
+	cin >> t;
 	while (t--) {
 		long long i = 0, j = 0;
-		// cin >> a >> b;
+		cin >> a >> b;
         sa=a.size(); sb=b.size();
         ia=0; ib=0;
+        ans = "";
 
         while(ia<sa && ib<sb){
             if (a[ia]<b[ib]) {ans+=a[ia]; ia++;}
