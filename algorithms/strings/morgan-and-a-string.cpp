@@ -10,43 +10,60 @@
 #include <iostream>
 #include <string>
 #include <cmath>
+#include <sstream>
 
 using namespace std;
+string a="ABACABA", b="ABACABA", ans="";
+
+void fillup(int ia, int ib){
+    int da=a.size()-ia, db=b.size()-ib;
+    int d=da-db;
+    // cout <<"d="<< d <<endl;
+    // cout <<"ia= "<<ia<<", ib="<<ib<<endl;
+
+    int c='Z'+1;
+    char cc=(char)c;
+    stringstream ss;
+    string ccc;
+    ss << cc;
+    ss >> ccc;
+
+    while(d){
+        if (d>0) {d--; b+=ccc;}
+        else
+            if (d<0) {d++; a+=ccc;}
+    }
+}
+
 
 int main() {
-	int t = 1;
-	cin >> t;
+
+	int t = 1, sa,sb,ia,ib;
+	// cin >> t;
 	while (t--) {
-		string a, b, ans;
 		long long i = 0, j = 0;
-		cin >> a >> b;
-		long long la = a.length(), lb = b.length();
-		a += char('z' + 1);
-		b += char('z' + 1);
-		while (lb != i && lb != j) {
-			if (a[i] < b[j])
-				ans += a[i++];
-			else if (a[i] > b[j])
-				ans += b[j++];
-			else {
-				int tempi = i + 2, tempj = j + 2;
-				while (a[tempi] == b[tempj] && a[tempi] == a[tempi - 1]
-						&& a[tempj] == a[tempj - 1]) {
-					tempi++;
-					tempj++;
-				}
-				if (a[tempi] == a[tempj])
-					ans += a[i++];
-				else if (a[tempi] < a[tempj])
-					ans += a[i++];
-				else
-					ans += a[j++];
-			}
-		}
-		ans = ans + a.substr(i, la - i) + b.substr(j, lb - j);
-		cout << ans << endl;
-//		cout << ((a<b)?"a<b":"a>b");
+		// cin >> a >> b;
+        sa=a.size(); sb=b.size();
+        ia=0; ib=0;
+
+        while(ia<sa && ib<sb){
+            if (a[ia]<b[ib]) {ans+=a[ia]; ia++;}
+            else{
+                if (a[ia]>b[ib]) {ans+=b[ib]; ib++;}
+                else{
+                    fillup(ia,ib);
+                    // cout << a << endl;
+                    // cout << b << endl;
+                    if (a<b) {ans+=a[ia]; ia++;}
+                    else {ans+=b[ib]; ib++;}
+                }
+            }
+        }
+
+		// cout << ans.substr(0,sa+sb) << endl;
+        if (ia==sa) ans+=b.substr(ib,sb-ib);
+        if (ib==sb) ans+=a.substr(ia,sa-ia);
+		cout << ans<< endl;
 	}
 	return 0;
 }
-
