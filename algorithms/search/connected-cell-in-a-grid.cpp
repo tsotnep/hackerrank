@@ -5,17 +5,21 @@
 #include <algorithm>
 using namespace std;
 
-vector< vector<int> > grid(12, vector<int>(12,0));
-vector< vector<int> > visited(12, vector<int>(12,0));
+int rowSZ = 10;
+int colSZ = 10;
+int initVal = 0;
 
-int RECU(int ii, int jj){
+vector< vector<int> > grid(colSZ, vector<int>(rowSZ,initVal));
+vector< vector<int> > visited(colSZ, vector<int>(rowSZ,initVal));
+
+int Depth_First_Search_Recursive(int ii, int jj){
     visited[ii][jj]=1;
     int ans=1;
 
     for (int i=ii-1;i<=ii+1;i++)
         for (int j=jj-1;j<=jj+1;j++){
-            if (visited[i][j]==0 && grid[i][j]==1 && i>0 && j>0 && i<12 && j<12){
-                ans+=RECU(i,j);
+            if (i>=0 && j>=0 && i<rowSZ && j<colSZ && visited[i][j]==0 && grid[i][j]==1){
+                ans+=Depth_First_Search_Recursive(i,j);
             }
         }
     return ans;
@@ -25,16 +29,15 @@ int main() {
     int m,n,i,j,Max=-1, max=-1;
     cin>>m>>n;
 
-    for (i=1;i<=m;i++)
-    for (j=1;j<=n;j++){
+    for (i=0;i<m;i++)
+    for (j=0;j<n;j++){
         cin>>grid[i][j];
     }
 
-    for (i=1;i<=m;i++)
-    for (j=1;j<=n;j++){
+    for (i=0;i<m;i++)
+    for (j=0;j<n;j++){
         if (grid[i][j]==1) {
-            grid[i][j]=0;
-            max=RECU(i,j);
+            max=Depth_First_Search_Recursive(i,j);
         }
         if (max>Max) Max=max;
     }
